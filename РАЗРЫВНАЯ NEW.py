@@ -13,7 +13,7 @@ from time import gmtime, strftime
 alls=[]
 bv = 1
 outA=0
-
+outX=0
 
 
 
@@ -108,6 +108,7 @@ app = Application(master=root)
 def clock(interval):
     writer = csv.writer(open("some "+ strftime("%d %b %H,%M,%S", gmtime()) +".csv", "wb"), delimiter=';', quoting=csv.QUOTE_MINIMAL, quotechar='`', lineterminator='\n')
     writer.writerows([['L0 = '+app.se12.get(),'d = ' + app.se13.get(), 'Polymer ' + app.se14.get()]])
+    global outX
     while bv:
         al=[]
         for i in range(9):
@@ -133,6 +134,10 @@ def clock(interval):
                 for i in al:
                     if i[1]==x: al = i
 
+                if outX:
+                    writer.writerows([[' ',' ', "TEMP:", outX]])
+                    outX=0
+
                 print al
                 alls.append(al)
                 writer.writerows([[al[0].split('.')[0],strftime("%H:%M:%S", gmtime()), zx.replace('.',','), outA]])
@@ -144,6 +149,23 @@ def clock(interval):
 def clockP():
     global outA
     time.sleep(5)
+    iu=7
+    global outX
+    while iu :
+        iu=iu-1
+        serP.write("M105" + '\r\n')
+        out = ''
+        time.sleep(0.2)
+        while serP.inWaiting() > 0:
+            out += serP.read(1)
+        if out != '':
+            try:
+                outX = str(out[:-4])
+                print outX
+            except:
+                
+                pass    
+    
     while 1 :
         serP.write("M114" + '\r\n')
         out = ''
@@ -156,6 +178,7 @@ def clockP():
                 outA = str(float(out.split('Count')[1].split('Z:')[1][:-4])).replace('.',',')
                 app.zna2["text"]=outA
             except:
+                
                 pass
 t = threading.Thread(target=clock, args=(15,))
 t2 = threading.Thread(target=clockP)
