@@ -14,7 +14,7 @@ alls=[]
 bv = 1
 outA=0
 outX=0
-
+iu=7
 
 
 class Application(Frame):
@@ -140,13 +140,16 @@ def clock(interval):
                     if i[1]==x: al = i
 
                 if outX:
-                    writer.writerows([[' ',' ', "TEMP:", outX]])
-                    print "TEMP: " + outX
-                    outX=0
-
+                    print "00000000"
+                    if 'T:' in outX:
+                        writer.writerows([[' ',' ', "TEMP:", outX]])
+                        print "TEMP: " + outX
+                    outX = 0
+                    
+                    
                 print al
                 alls.append(al)
-                if not outX:
+                if (not outX) and (not iu):
                     writer.writerows([[al[0].split('.')[0],strftime("%H:%M:%S", gmtime()), zx.replace('.',','), outA]])
                 
                 app.zna["text"] = alls[-1][0]
@@ -156,7 +159,7 @@ def clock(interval):
 def clockP():
     global outA
     time.sleep(5)
-    iu=7
+    global iu
     global outX
     while iu :
         iu=iu-1
