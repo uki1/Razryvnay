@@ -136,11 +136,13 @@ def clock(interval):
 
                 if outX:
                     writer.writerows([[' ',' ', "TEMP:", outX]])
+                    print "TEMP: " + outX
                     outX=0
 
                 print al
                 alls.append(al)
-                writer.writerows([[al[0].split('.')[0],strftime("%H:%M:%S", gmtime()), zx.replace('.',','), outA]])
+                if not outX:
+                    writer.writerows([[al[0].split('.')[0],strftime("%H:%M:%S", gmtime()), zx.replace('.',','), outA]])
                 
                 app.zna["text"] = alls[-1][0]
                 
