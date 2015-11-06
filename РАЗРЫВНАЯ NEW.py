@@ -71,6 +71,10 @@ class Application(Frame):
         self.se11 = Button(self)
         self.se11["text"] = "F50"
         self.se11["command"] = lambda: serP.write("G1 F50" + '\r\n')
+        
+        self.se19 = Button(self)
+        self.se19["text"] = "F1"
+        self.se19["command"] = lambda: serP.write("G1 F1" + '\r\n')
 
         self.se12 = Entry(self)
         self.se15 = Label(self, text="LENGHT:")
@@ -86,6 +90,7 @@ class Application(Frame):
         
         self.se10.pack({"side": "left"})
         self.se11.pack({"side": "left"})
+        self.se19.pack({"side": "left"})
         self.se15.pack({"side": "left"})
         self.se12.pack({"side": "left"})
         self.se16.pack({"side": "left"})
