@@ -218,7 +218,6 @@ def clockP():
             out += serP.read(1)
         if out != '':
             try:
-                app.zna2["text"]=out
                 outA = str(float(out.split('Count')[1].split('Z:')[1][:-4])).replace('.',',')
                 app.zna2["text"]=outA
             except:
