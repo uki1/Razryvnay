@@ -40,7 +40,7 @@ class Application(Frame):
         self.zna["text"] = "Disconnect"
         self.zna["fg"]   = "red"
 
-        self.zna.pack({"side": "left"})
+        self.zna.grid(row = 1, column = 1)
 
         self.zna2 = Label(self)
         self.zna2["text"] = "Disconnect"
@@ -50,19 +50,19 @@ class Application(Frame):
         self.hi_there["text"] = "Connect"
         self.hi_there["command"] = self.conec
 
-        self.hi_there.pack({"side": "left"})
+        self.hi_there.grid(row = 1, column = 2)
 
         self.se2 = Button(self)
         self.se2["text"] = "Connect 2"
         self.se2["command"] = self.conec2
 
-        self.se2.pack({"side": "left"})
+        self.se2.grid(row = 1, column = 3)
         
         self.seH = Button(self)
         self.seH["text"] = "HOME Z"
         self.seH["command"] = lambda: serP.write("G28 Z" + '\r\n')
 
-        self.seH.pack({"side": "left"})
+        self.seH.grid(row = 1, column = 4)
 
         self.se10 = Button(self)
         self.se10["text"] = "Z200"
@@ -86,18 +86,27 @@ class Application(Frame):
 
         self.se14 = Entry(self)
         self.se17 = Label(self, text="POLYMER:")
+
+        self.canv = Canvas(self, width = 400, height = 400, bg = "white")
+        self.canv.create_line(200,400,200,0,width=2,arrow=LAST) 
+        self.canv.create_line(0,200,400,200,width=2,arrow=LAST) 
+
+
+
          
         
-        self.se10.pack({"side": "left"})
-        self.se11.pack({"side": "left"})
-        self.se19.pack({"side": "left"})
-        self.se15.pack({"side": "left"})
-        self.se12.pack({"side": "left"})
-        self.se16.pack({"side": "left"})
-        self.se13.pack({"side": "left"})
-        self.se17.pack({"side": "left"})
-        self.se14.pack({"side": "left"})
-        self.zna2.pack({"side": "left"})
+        self.se10.grid(row = 1, column = 5)
+        self.se11.grid(row = 1, column = 6)
+        self.se19.grid(row = 1, column = 7)
+        self.se15.grid(row = 1, column = 8)
+        self.se12.grid(row = 1, column = 9)
+        self.se16.grid(row = 1, column = 10)
+        self.se13.grid(row = 1, column = 11)
+        self.se17.grid(row = 1, column = 12)
+        self.se14.grid(row = 1, column = 13)
+        self.zna2.grid(row = 1, column = 14)
+        self.canv.grid(row = 2, column = 1, columnspan = 8)
+        
         
     def __init__(self, master=None):
         Frame.__init__(self, master)
@@ -151,7 +160,11 @@ def clock(interval):
                 alls.append(al)
                 if (not outX) and (not iu):
                     writer.writerows([[al[0].split('.')[0],strftime("%H:%M:%S", gmtime()), zx.replace('.',','), outA]])
-                
+                    try:
+                        float(zx)
+                        writegraph(float(outA), float(zx))
+                    except:
+                        writegraph(float(outA.replace(',','.')), 0)
                 app.zna["text"] = alls[-1][0]
                 
                 break
@@ -188,8 +201,14 @@ def clockP():
                 outA = str(float(out.split('Count')[1].split('Z:')[1][:-4])).replace('.',',')
                 app.zna2["text"]=outA
             except:
-                
                 pass
+
+def writegraph(x,y):
+    x = int(x)*2
+    y = int(y+50)/10
+    app.canv.create_oval(x, y, x + 1, y + 1, fill = 'black')
+    pass
+            
 t = threading.Thread(target=clock, args=(15,))
 t2 = threading.Thread(target=clockP)
 
