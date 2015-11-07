@@ -68,6 +68,10 @@ class Application(Frame):
         self.se10["text"] = "Z200"
         self.se10["command"] = lambda: serP.write("G1 Z200" + '\r\n')
 
+        self.se150 = Button(self)
+        self.se150["text"] = "Z50"
+        self.se150["command"] = lambda: serP.write("G1 Z50" + '\r\n')
+        
         self.se178 = Button(self)
         self.se178["text"] = "Z0"
         self.se178["command"] = lambda: serP.write("G1 Z0" + '\r\n')
@@ -98,7 +102,7 @@ class Application(Frame):
         self.se17 = Label(self, text="POLYMER:")
 
         self.canv = Canvas(self, width = 800, height = 400, bg = "white")
-        self.canv.create_line(1,400,1,0,width=2,arrow=LAST) 
+        self.canv.create_line(3,400,3,0,width=2,arrow=LAST) 
         self.canv.create_line(0,399,800,399,width=2,arrow=LAST) 
 
 
@@ -106,18 +110,19 @@ class Application(Frame):
          
         
         self.se10.grid(row = 1, column = 5)
-        self.se178.grid(row = 1, column = 6)
-        self.se109.grid(row = 1, column = 7)
-        self.se11.grid(row = 1, column = 8)
-        self.se19.grid(row = 1, column = 9)
-        self.se15.grid(row = 1, column = 10)
-        self.se12.grid(row = 1, column = 11)
-        self.se16.grid(row = 1, column = 12)
-        self.se13.grid(row = 1, column = 13)
-        self.se17.grid(row = 1, column = 14)
-        self.se14.grid(row = 1, column = 15)
-        self.zna2.grid(row = 1, column = 16)
-        self.canv.grid(row = 2, column = 1, columnspan = 15)
+        self.se150.grid(row = 1, column = 6)
+        self.se178.grid(row = 1, column = 7)
+        self.se109.grid(row = 1, column = 8)
+        self.se11.grid(row = 1, column = 9)
+        self.se19.grid(row = 1, column = 10)
+        self.se15.grid(row = 1, column = 11)
+        self.se12.grid(row = 1, column = 12)
+        self.se16.grid(row = 1, column = 13)
+        self.se13.grid(row = 1, column = 14)
+        self.se17.grid(row = 1, column = 15)
+        self.se14.grid(row = 1, column = 16)
+        self.zna2.grid(row = 1, column = 17)
+        self.canv.grid(row = 2, column = 1, columnspan = 16)
         
         
     def __init__(self, master=None):
@@ -163,7 +168,7 @@ def clock(interval):
                 if outX:
                     print "00000000"
                     if 'T:' in outX:
-                        writer.writerows([[' ',' ', "TEMP:", outX]])
+                        writer.writerows([[' ', "TEMP:", outX[3:]]])
                         print "TEMP: " + outX
                     outX = 0
                     
