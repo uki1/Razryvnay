@@ -40,7 +40,7 @@ class Application(Frame):
         self.zna["text"] = "Disconnect"
         self.zna["fg"]   = "red"
 
-        self.zna.grid(row = 1, column = 1)
+        
 
         self.zna2 = Label(self)
         self.zna2["text"] = "Disconnect"
@@ -78,17 +78,17 @@ class Application(Frame):
 
         
         self.se109 = Button(self)
-        self.se109["text"] = "F200"
+        self.se109["text"] = "V = 200 mm/min"
         self.se109["command"] = lambda: serP.write("G1 F200" + '\r\n')
 
         
         self.se11 = Button(self)
-        self.se11["text"] = "F50"
+        self.se11["text"] = "V = 50 mm/min"
         self.se11["command"] = lambda: serP.write("G1 F50" + '\r\n')
         
         self.se19 = Button(self)
-        self.se19["text"] = "F1"
-        self.se19["command"] = lambda: serP.write("G1 F1" + '\r\n')
+        self.se19["text"] = "V = 5 mm/min"
+        self.se19["command"] = lambda: serP.write("G1 F5" + '\r\n')
 
         self.se12 = Entry(self)
         self.se15 = Label(self, text="LENGHT:")
@@ -108,7 +108,7 @@ class Application(Frame):
 
 
          
-        
+        self.zna.grid(row = 1, column = 17)
         self.se10.grid(row = 1, column = 5)
         self.se150.grid(row = 1, column = 6)
         self.se178.grid(row = 1, column = 7)
@@ -121,7 +121,7 @@ class Application(Frame):
         self.se13.grid(row = 1, column = 14)
         self.se17.grid(row = 1, column = 15)
         self.se14.grid(row = 1, column = 16)
-        self.zna2.grid(row = 1, column = 17)
+        self.zna2.grid(row = 1, column = 18)
         self.canv.grid(row = 2, column = 1, columnspan = 16)
         
         
@@ -224,8 +224,8 @@ def clockP():
                 pass
 
 def writegraph(x,y):
-    x = int(x)*4
-    y = 400-int(y+50)/7
+    x = int(x*2)
+    y = int(400-(y+50)/20)
     print 'x = ', x, 'y = ', y
     app.canv.create_oval(x, y, x + 1, y + 1, fill = 'black')
     pass
