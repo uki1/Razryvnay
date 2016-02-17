@@ -1,0 +1,40 @@
+L0 = ;d = ;Polymer 
+ ;TEMP:;`rt
+echo: External Reset
+Marlin1.0.0
+echo: Last Updated: Sep 10 2015 09:32:40 | Author: (none, default config)
+Compiled: Sep 10 2015
+echo: Free Memory: 3799  PlannerBufferBytes: 1232
+echo:Hardcoded Default Settings Loaded
+echo:Steps per unit:
+echo:  M92 X79.94 Y81.19 Z392.16 E100.00
+echo:Maximum feedrates (mm/s):
+echo:  M203 X400.00 Y400.00 Z2.00 E25.00
+echo:Maximum Acceleration (mm/s2):
+echo:  M201 X7000 Y7000 Z100 E10000
+echo:Acceleration: S=acceleration, T=retract acceleration
+echo:  M204 S2000.00 T2000.00
+echo:Advanced variables: S=Min feedrate (mm/s), T=Min travel feedrate (mm/s), B=minimum segment time (ms), X=maximum XY jerk (mm/s),  Z=maximum Z jerk (mm/s),  E=maximum E jerk (mm/s)
+echo:  M205 S0.00 T0.00 B20000 X20.00 Z0.40 E5.00
+echo:Home offset (mm):
+echo:  M206 X0.00 Y0.00 Z0.00
+echo:PID settings:
+echo:   M301 P31.00 I0.73 D330.11
+echo:SD init fail
+ok T:19.9 /0.0 B:0.0 /0.0 T0:19.9 /0.0 @:0 B`
+ ;TEMP:;T:20.0 /0.0 B:0.0 /0.0 T0:20.0 /0.0 @:0 B
+ ;TEMP:;T:20.0 /0.0 B:0.0 /0.0 T0:20.0 /0.0 @:0 B
+ ;TEMP:;T:19.8 /0.0 B:0.0 /0.0 T0:19.8 /0.0 @:0 B
+52;06:36:52;0,0;0
+49;06:36:53;0,0;0,0
+47;06:36:53;0,0;0,0
+45;06:37:06;0,0;0,0
+43;06:37:07;0,0;0,0
+42;06:37:07;0,0;0,0
+41;06:37:08;0,0;0,0
+40;06:37:08;0,0;0,0
+40;06:37:09;0,0;0,0
+412;06:37:11;0,0;0,0
+41;06:37:11;0,0;0,0
+40;06:37:11;0,0;0,0
+4033;06:37:12;0,0;0,0

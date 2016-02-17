@@ -26,7 +26,7 @@ void loop() {
   sens(974, 4);
   mas += scale.getGram();
   sens(972000, 2);
-  Serial.print(mas/5.0, 1);
+  Serial.print((mas/5.0)/1.59, 1);//1,59 magic k for grad sensor value to gramm
   Serial.println(";-");
 }
 
