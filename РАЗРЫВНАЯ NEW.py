@@ -138,7 +138,7 @@ app = Application(master=root)
 
 def clock(interval):
     writer = csv.writer(open("some "+ strftime("%d %b %H,%M,%S", gmtime()) +".csv", "wb"), delimiter=';', quoting=csv.QUOTE_MINIMAL, quotechar='`', lineterminator='\n')
-    writer.writerows([['L0 = '+app.se12.get(),'d = ' + app.se13.get(), 'Polymer ' + app.se14.get()]])
+    writer.writerows([[' ',' ',' ',' ',' ',' ',' ',' ','L0 = '+app.se12.get(),'d = ' + app.se13.get(), 'Polymer ' + app.se14.get()]])
     global outX
     while bv:
         al=[]
@@ -168,7 +168,7 @@ def clock(interval):
                 if outX:
                     print "00000000"
                     if 'T:' in outX:
-                        writer.writerows([[' ', "TEMP:", outX[3:]]])
+                        writer.writerows([[' ',' ',' ',' ',' ',' ',' ',' ', "TEMP:", outX[3:]]])
                         print "TEMP: " + outX
                     outX = 0
                     
